@@ -48,7 +48,7 @@ jobs:
       - name: Run Trivy
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: devsecops-demo:{{ github.sha }}
+          image-ref: devsecops-demo:${{ github.sha }}
           format: 'table'
           exit-code: '0'
 
