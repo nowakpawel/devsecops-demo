@@ -15,3 +15,33 @@ jobs:
       - uses: semgrep/semgrep-action@v1
         with:
           config: p/java
+  sca:
+    name: SCA - Dependency Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v4
+      - name: Run OWASP Dependency Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'devsecops-demo'
+          path: '.'
+          format: 'HTML'
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-report
+          path: reports/
+  trivy:
+    name: Container Scan - Trivy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker Image
+        run: docker build -t devsecops-demo:${{ github.sha }} .
+      - name: Run Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: devsecops-demo:{{ github.sha }}
+          format: 'table'
+          exit-code: '0'
+
