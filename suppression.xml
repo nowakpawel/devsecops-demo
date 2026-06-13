@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+  <suppress>
+    <notes>
+      CVE-2018-1258 requires Spring Framework 5.0.5 AND any version of Spring Security.
+      This project uses Spring Framework 7.0.8 — the AND condition is not met. False positive.
+    </notes>
+    <cve>CVE-2018-1258</cve>
+  </suppress>
+</suppressions>

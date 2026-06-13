@@ -46,6 +46,7 @@ jobs:
           project: 'devsecops-demo'
           path: '.'
           format: 'HTML'
+          args: --supression suppression.xml
       - name: Upload Report
         uses: actions/upload-artifact@v4
         with:
