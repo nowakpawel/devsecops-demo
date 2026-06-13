@@ -16,7 +16,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
       - name: Build Jar
-        run: mvnw package -DskipTests
+        run: ./mvnw package -DskipTests
       - name: Upload Jar
         uses: actions/upload-artifact@v4
         with:
